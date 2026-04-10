@@ -1,4 +1,4 @@
-export const Tabs = ({ tabs, activeTabId, onTabSelect }) => {
+export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
   const activeTab = tabs.find(tab => tab.id === activeTabId) || tabs[0];
 
   return (
@@ -6,7 +6,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelect }) => {
       <div className="tabs is-boxed">
         <ul>
           {tabs.map(tab => {
-            const isActive = tab.id === activeTabId;
+            const isActive = tab.id === activeTab.id;
 
             return (
               <li
@@ -21,7 +21,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelect }) => {
                     e.preventDefault();
 
                     if (!isActive) {
-                      onTabSelect(tab.id);
+                      onTabSelected(tab.id);
                     }
                   }}
                 >
@@ -32,7 +32,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelect }) => {
           })}
         </ul>
       </div>
-      <div className="blockd" data-cy="TabContent">
+      <div className="block" data-cy="TabContent">
         {activeTab.content}
       </div>
     </div>
